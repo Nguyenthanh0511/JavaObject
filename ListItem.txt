@@ -1,0 +1,10 @@
+Item0,0,10.0,Unit0,quanlyvattuxaydung.NhaCungCap@3ecf72fd,Description0,1
+Item1,1,20.0,Unit1,quanlyvattuxaydung.NhaCungCap@2a18f23c,Description1,2
+Item2,2,30.0,Unit2,quanlyvattuxaydung.NhaCungCap@d7b1517,Description2,3
+Item3,3,40.0,Unit3,quanlyvattuxaydung.NhaCungCap@16c0663d,Description3,4
+Item4,4,50.0,Unit4,quanlyvattuxaydung.NhaCungCap@23223dd8,Description4,5
+Item5,5,60.0,Unit5,quanlyvattuxaydung.NhaCungCap@4ec6a292,Description5,6
+Item6,6,70.0,Unit6,quanlyvattuxaydung.NhaCungCap@1b40d5f0,Description6,7
+Item7,7,80.0,Unit7,quanlyvattuxaydung.NhaCungCap@ea4a92b,Description7,8
+Item8,8,90.0,Unit8,quanlyvattuxaydung.NhaCungCap@3c5a99da,Description8,9
+Item9,9,100.0,Unit9,quanlyvattuxaydung.NhaCungCap@47f37ef1,Description9,10

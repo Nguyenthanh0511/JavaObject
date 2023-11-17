@@ -1,0 +1,2 @@
+cat,12,9000.0,8999,null,hihihihi,9000
+nuoc,3,909090.0,4,null,jijijijiji,3
