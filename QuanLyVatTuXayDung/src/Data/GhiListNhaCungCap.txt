@@ -1,2 +1,2 @@
-NCC1NCC1,1,09090,AnAn  lao,cat,nuoc,
-thanh,2,09999,Binh luc,cat vang,cat trang,
+NCC1NCC1,1,09090,AnAn  lao,cat
+thanh,2,09999,Binh luc,cat vang

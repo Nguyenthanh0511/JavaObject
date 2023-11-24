@@ -48,7 +48,7 @@ public class NhaCungCap extends Person{
         System.out.println("Nhap Dia Chi:");
         address = sc.nextLine();
         System.out.println("Nhap so luong san pham nha cung cap :");
-        int soLuong = sc.nextInt();
+        int soLuong = 1;
         for(int i = 0 ;i < soLuong;i++){
             Item sanPham = new Item();
             sanPham.Input(); //nHAP VAo 

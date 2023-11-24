@@ -66,27 +66,7 @@ public class ListNhaCungCap {
         nccXoa.setCode(codeXoa);
         removeNhaCungCap(nccXoa);
     }
-    //Ghi thông tin nhà cung cấp
-     // writeToFile method
-     public void writeToFile(String fileName) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            for (NhaCungCap ncc : listNhaCungCap) {
-                writer.write(ncc.getName() + "," + ncc.getCode() + "," + ncc.getPhoneNumber() + "," + ncc.getAddress());
-                ArrayList<Item> sanPhams = ncc.getSanPhams();
-                if (sanPhams != null && !sanPhams.isEmpty()) {
-                    writer.write(",");
-                    for (Item sanPham : sanPhams) {
-                        writer.write(sanPham.getName() + ",");
-                    }
-                }
-                writer.newLine();
-            }
-            System.out.println("Danh sách nhà cung cấp đã được ghi vào file '" + fileName + "'.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
+    
     // Cập nhật nhà cung cấp :
     public void updateNhaCungCap(NhaCungCap updatedNhaCungCap) {
         if (listNhaCungCap.contains(updatedNhaCungCap)) {
@@ -107,20 +87,66 @@ public class ListNhaCungCap {
         return null;
     }
     //Đọc file
+    //Ghi thông tin nhà cung cấp
+     // writeToFile method
+     public void writeToFile(String fileName) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            for (NhaCungCap ncc : listNhaCungCap) {
+                writer.write(ncc.getName() + "," + ncc.getCode() + "," + ncc.getPhoneNumber() + "," + ncc.getAddress());
+                ArrayList<Item> sanPhams = ncc.getSanPhams();
+                if (sanPhams != null && !sanPhams.isEmpty()) {
+                    writer.write(",");
+                    for (Item sanPham : sanPhams) {
+                        writer.write(sanPham.getName() + ",");
+                    }
+                }
+                writer.newLine();
+            }
+            System.out.println("Danh sách nhà cung cấp đã được ghi vào file '" + fileName + "'.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void readFromFile(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
+                // Split the line into parts using commas as the delimiter
                 String[] parts = line.split(",");
+                
+                // Extract information for the supplier
                 String name = parts[0];
                 String code = parts[1];
                 String phoneNumber = parts[2];
                 String address = parts[3];
-
+                String docSanPham = parts[4];
+                // Extract the product information from the fourth field
+                ArrayList<String> InfoString = new ArrayList<>(Arrays.asList(line.split(",")));
+                String StringItems = InfoString.get(3);
+                ArrayList<String> sanPham = new ArrayList<>(Arrays.asList(StringItems.split(";")));
+    
+                // Create a list to store products that were not found
+                ArrayList<String> notFound = new ArrayList<String>();
+                ListItems listSanPham = new ListItems();
+                
+                // Check if each product exists in the list of items
+                // for(String k : sanPham){
+                //     if(!listSanPham.findItems(k)){
+                //         // If the product is not found, prompt for input and add it to the list
+                //         System.out.println("San pham khong ton tai. Vui long nhap thong tin san pham");
+                //         Item nItems = new Item();
+                //         nItems.Input();
+                //         listSanPham.addItem(nItems);
+                //         notFound.add(k);
+                //     }
+                // }
+    
+                // Create a new supplier object
                 NhaCungCap nhaCungCap = new NhaCungCap(name, code, phoneNumber, address, new ArrayList<>());
-
-                // If there are additional fields for sanPhams, add them here
-
+    
+                // If there are additional fields for products, add them here
+                
+                // Add the supplier to the list
                 addNhaCungCap(nhaCungCap);
             }
             System.out.println("Danh sách nhà cung cấp đã được đọc từ file '" + fileName + "'.");
@@ -128,4 +154,13 @@ public class ListNhaCungCap {
             e.printStackTrace();
         }
     }
+    
+    //Ghi file nhà Cung cấp 
+    // public void readFile(String filename){
+    //     try(BufferedWriter bw = new BufferedWriter(new FileWriter(new File(filename)))){
+    //         for(NhaCungCap ncc :listNhaCungCap){
+    //             String dong = ncc.getName()+","+ncc.getCode()+","+ncc.getPhoneNumber()+","+ncc.getAddress()+","+
+    //         }
+    //     }
+    // }
 }

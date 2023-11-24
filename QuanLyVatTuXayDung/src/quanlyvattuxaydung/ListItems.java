@@ -161,7 +161,15 @@ public class ListItems {
         }
         return null; // Trả về null nếu không tìm thấy sản phẩm
     }
-    // Gena
+    // Tìm kiểm trả về boolean
+    public boolean findItems(String value){
+        for(Item k : listItem){
+            if(k.getId().equals(value)||k.getName().equals(value)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 

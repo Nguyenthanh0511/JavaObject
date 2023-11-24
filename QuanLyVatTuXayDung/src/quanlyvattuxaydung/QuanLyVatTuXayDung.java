@@ -208,9 +208,8 @@ public class QuanLyVatTuXayDung {
                     System.out.println("3. Xoa thong tin Nha Cung Cap ");
                     System.out.println("4. Tim kiem Nha Cung Cap");
                     System.out.println("5. Sua thong tin Nha Cung Cap");
-                    System.out.println("6. Dem so luong Nha Cung Cap");
+                    System.out.println("6. Đọc file nha cung cap");
                     System.out.println("7. Ghi file");
-                    System.out.println("8. Doc file");
                     System.out.println("7. Thoat");
                     System.out.println("Nhap lua chon: ");
                     int dongNhaCungCap = sc.nextInt();
@@ -262,11 +261,12 @@ public class QuanLyVatTuXayDung {
                             listNhaCungCap.readFromFile("QuanLyVatTuXayDung\\src\\Data\\GhiListNhaCungCap.txt");
                             break;
                         case 7:
-                            listNhaCungCap.writeToFile("QuanLyVatTuXayDung\\src\\Data\\GhiListNhaCungCap.txt");
+                            listNhaCungCap.writeToFile("QuanLyVatTuXayDung\\src\\Data\\DocListNhaCungCap.txt");
                             break;
                         case 8:
                             break;
                     }
+                    break;
                 case 4:
                 System.out.println("=========== QUAN LY HOA DON ===========");
                 System.out.println("1. Xem danh sach hoa don");
