@@ -113,7 +113,6 @@ public class ListItems {
         Collections.swap(arr, i + 1, right);
         return i + 1;
     }
-    
     public ArrayList<Item> sortPrice() {
         ArrayList<Item> result = new ArrayList<>(listItem);
         QuickSort(result, 0, result.size() - 1);

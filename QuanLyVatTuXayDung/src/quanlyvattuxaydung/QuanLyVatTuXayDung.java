@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package quanlyvattuxaydung;
 
 /**
@@ -10,7 +7,7 @@ package quanlyvattuxaydung;
  */
 import java.util.*;
 
-public class QuanLyVatTuXayDung {
+public class quanlyvattuxaydung {
 
     /**
      * @param args the command line arguments
@@ -23,7 +20,6 @@ public class QuanLyVatTuXayDung {
         ListNhaCungCap listNhaCungCap = new ListNhaCungCap();
         ListHoaDon listHoaDon = new ListHoaDon();
         int n;
-
         do {
             System.out.println("********QUAN LY CUA HANG VAT TU XAY DUNG:********");
             System.out.println("1. Quan ly san pham ");
@@ -35,7 +31,6 @@ public class QuanLyVatTuXayDung {
             System.out.println("Nhap lua chon");
             luaChon = sc.nextInt();
             System.out.println("***********************************************");
-
             switch (luaChon) {
                 case 1:
                     System.out.println("=========== QUAN LY NHA SAN PHAM ===========");
@@ -127,6 +122,8 @@ public class QuanLyVatTuXayDung {
                     System.out.println("4. Tim kiem khach hang");
                     System.out.println("5. Sua thong tin khach");
                     System.out.println("6. Dem so luong khach hang");
+                    System.out.println("7. Doc thong tin tu file ");
+                    System.out.println("8. Ghi thong tin vao file");
                     System.out.println("7. Thoat");
                     System.out.println("Nhap lua chon: ");
                     int dongKhachHang = sc.nextInt();
@@ -192,13 +189,18 @@ public class QuanLyVatTuXayDung {
                             int soLuongKhachHang = listCustomer.soLuongKhachHang();
                             System.out.println("So luong khach hang: " + soLuongKhachHang);
                             break;
-
+                        case 7:
+                            System.out.println("Doc file");
+                            listCustomer.readToFile("QuanLyVatTuXayDung\\src\\Data\\DocListCustomer.txt");
+                            break;
+                        case 8:
+                            System.out.println("Ghi file");
+                            listCustomer.writeToFile("src\\Data\\GhiListCustomer.txt");
                         default:
                             System.out.println("Lua chon khong hop le.");
                             break;
                     }
                     break;
-
                 // ... (Các case khác)
                 case 3:
                     // Quản lý hóa đơn
@@ -208,7 +210,7 @@ public class QuanLyVatTuXayDung {
                     System.out.println("3. Xoa thong tin Nha Cung Cap ");
                     System.out.println("4. Tim kiem Nha Cung Cap");
                     System.out.println("5. Sua thong tin Nha Cung Cap");
-                    System.out.println("6. Đọc file nha cung cap");
+                    System.out.println("6. Doc file nha cung cap");
                     System.out.println("7. Ghi file");
                     System.out.println("7. Thoat");
                     System.out.println("Nhap lua chon: ");
@@ -261,7 +263,7 @@ public class QuanLyVatTuXayDung {
                             listNhaCungCap.readFromFile("QuanLyVatTuXayDung\\src\\Data\\GhiListNhaCungCap.txt");
                             break;
                         case 7:
-                            listNhaCungCap.writeToFile("QuanLyVatTuXayDung\\src\\Data\\DocListNhaCungCap.txt");
+                            listNhaCungCap.writeToFile("QuanLyVatTuXayDung\\src\\Data\\GhiListNhaCungCap.txt");
                             break;
                         case 8:
                             break;
@@ -277,7 +279,7 @@ public class QuanLyVatTuXayDung {
                 System.out.println("6. Tim kiem hoa don theo id :");
                 System.out.println("7. ");
                 System.out.print("Nhap lua chon: ");
-    
+
                 int dongHoaDon = sc.nextInt();
                 switch (dongHoaDon) {
                     case 1:
@@ -288,6 +290,11 @@ public class QuanLyVatTuXayDung {
                     case 2:
                         // Add new order
                         // ... (prompt user for details and add new HoaDon to listHoaDon)
+                        HoaDon hoaDon = new HoaDon();
+                        System.err.println("Nhap thong tin hoa don :");
+                        hoaDon.Input();
+                        listHoaDon.addHoaDon(hoaDon);
+                        System.out.printf("Hoa don %s da duoc them :\n",hoaDon.getId());
                         break;
                     case 3:
                         // Remove order
@@ -308,9 +315,13 @@ public class QuanLyVatTuXayDung {
                         listHoaDon.updateHoaDonInfo(orderIdToUpdate, sc);
                         break;
                     case 5:
-                        System.out.println("Thoat chuong trinh. Tam biet!");
-                        System.exit(0);
+                        System.out.println("Ghi file");
+                        listHoaDon.writeToFile("QuanLyVatTuXayDung\\src\\Data\\DocListHoaDon.txt");
                         break;
+                    case 6:
+                    System.out.println("Thoat chuong trinh. Tam biet!");
+                    System.exit( 0);
+                    break;
                     default:
                         System.out.println("Lua chon khong hop le. Vui long thu lai.");
                 }

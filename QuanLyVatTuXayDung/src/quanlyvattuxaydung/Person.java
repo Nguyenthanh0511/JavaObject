@@ -5,19 +5,21 @@
 package quanlyvattuxaydung;
 
 import java.util.*;
-public class Person {
+public class Person { //Nguoi
+    //Đây là thuộc tính ( name và PhoneNumber)
     protected String name;
     protected String PhoneNumber ;
-    public Person(String name,String PhoneNumber){
-        this.name = name;
+    public Person(String name,String PhoneNumber){ //Phương thức khởi tạo 
+        this.name = name; 
         this.PhoneNumber = PhoneNumber;
     }
-    public Person(){
+    public Person(){  // 
 
     }
-    public Person(String name){
+    public Person(String name){ // thay đổi đổi tên 
         this.name = name;
     }
+    //Input 
     public void Input(){                                                                                                                                                                                                            
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhap ho ten :");
@@ -26,7 +28,7 @@ public class Person {
         PhoneNumber = sc.nextLine();
     }
     public void Output(){
-        System.out.printf("\n%20s",name );
+        System.out.printf("\n%20s",name ); 
         System.out.printf("%5s",PhoneNumber );
     }
     public String getName() {
@@ -41,5 +43,4 @@ public class Person {
     public void setPhoneNumber(String phoneNumber) {
         PhoneNumber = phoneNumber;
     }
-    
 }

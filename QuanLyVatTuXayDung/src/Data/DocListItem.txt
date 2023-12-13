@@ -1,10 +1,10 @@
-Item0,0,10.0,Unit0,NCC1,Description0,1
-Item1,1,20.0,Unit1,NCC2,Description1,2
-Item2,2,30.0,Unit2,NCC3,Description2,311
-Item3,3,40.0,Unit3,NCC4,Description3,412
-Item4,4,50.0,Unit4,NCC5,Description4,53123
-Item5,5,60.0,Unit5,NCC6,Description5,12
-Item6,6,70.0,Unit6,NCC7,Description6,712
-Item7,7,80.0,Unit7,NCC8,Description7,83
-Item8,8,90.0,Unit8,NCC9,Description8,95555555
-Item9,9,100.0,Unit9,NCC10,Description9,101212
+cat,0,10.0,Unit0,NCC1,Description0,1
+da,1,20.0,Unit1,NCC2,Description1,2
+gach,2,30.0,Unit2,NCC3,Description2,311
+cat vang,3,40.0,Unit3,NCC4,Description3,412
+soi,4,50.0,Unit4,NCC5,Description4,53123
+be tong,5,60.0,Unit5,NCC6,Description5,12
+sat,6,70.0,Unit6,NCC7,Description6,712
+thep,7,80.0,Unit7,NCC8,Description7,83
+nhom,8,90.0,Unit8,NCC9,Description8,95555555
+xi mang,9,100.0,Unit9,NCC10,Description9,101212

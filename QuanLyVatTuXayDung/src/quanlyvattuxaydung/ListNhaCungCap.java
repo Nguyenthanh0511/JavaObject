@@ -15,6 +15,7 @@ public class ListNhaCungCap {
     public ArrayList<NhaCungCap> getListNhaCungCap(){
         return listNhaCungCap;
     }
+
     public ListNhaCungCap(){
         this.listNhaCungCap = new ArrayList();
     }
@@ -97,7 +98,7 @@ public class ListNhaCungCap {
                 if (sanPhams != null && !sanPhams.isEmpty()) {
                     writer.write(",");
                     for (Item sanPham : sanPhams) {
-                        writer.write(sanPham.getName() + ",");
+                        writer.write(sanPham.getName());
                     }
                 }
                 writer.newLine();
@@ -111,49 +112,74 @@ public class ListNhaCungCap {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                // Split the line into parts using commas as the delimiter
                 String[] parts = line.split(",");
-                
-                // Extract information for the supplier
                 String name = parts[0];
                 String code = parts[1];
                 String phoneNumber = parts[2];
                 String address = parts[3];
-                String docSanPham = parts[4];
-                // Extract the product information from the fourth field
-                ArrayList<String> InfoString = new ArrayList<>(Arrays.asList(line.split(",")));
-                String StringItems = InfoString.get(3);
-                ArrayList<String> sanPham = new ArrayList<>(Arrays.asList(StringItems.split(";")));
-    
-                // Create a list to store products that were not found
-                ArrayList<String> notFound = new ArrayList<String>();
-                ListItems listSanPham = new ListItems();
+                String docSanPham = parts.length > 4 ? parts[4] : "";
                 
-                // Check if each product exists in the list of items
-                // for(String k : sanPham){
-                //     if(!listSanPham.findItems(k)){
-                //         // If the product is not found, prompt for input and add it to the list
-                //         System.out.println("San pham khong ton tai. Vui long nhap thong tin san pham");
-                //         Item nItems = new Item();
-                //         nItems.Input();
-                //         listSanPham.addItem(nItems);
-                //         notFound.add(k);
-                //     }
-                // }
-    
-                // Create a new supplier object
-                NhaCungCap nhaCungCap = new NhaCungCap(name, code, phoneNumber, address, new ArrayList<>());
-    
-                // If there are additional fields for products, add them here
-                
-                // Add the supplier to the list
+                ArrayList<Item> sanPham = new ArrayList<>();
+                if (!docSanPham.isEmpty()) {
+                    String[] itemNames = docSanPham.split(";");
+                    for (String itemName : itemNames) {
+                        Item item = new Item(itemName);
+                        sanPham.add(item);
+                    }
+                }
+
+                NhaCungCap nhaCungCap = new NhaCungCap(name, code, phoneNumber, address, sanPham);
                 addNhaCungCap(nhaCungCap);
             }
-            System.out.println("Danh sách nhà cung cấp đã được đọc từ file '" + fileName + "'.");
+            System.out.println("Danh sach da duoc doc thanh cong tu file :" + fileName + "'.");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
+
+
+
+
+    // public void readFromFile(String fileName) {
+    //     try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+    //         String line;
+    //         while ((line = reader.readLine()) != null) {
+    //             // Split the line into parts using commas as the delimiter
+    //             String[] parts = line.split(",");
+                
+    //             // Extract information for the supplier
+    //             String name = parts[0];
+    //             String code = parts[1];
+    //             String phoneNumber = parts[2];
+    //             String address = parts[3];
+                
+    //         // Extract the product information from the fourth field
+    //         String docSanPham = parts.length > 4 ? parts[4] : "";
+    //         ArrayList<Item> sanPham = new ArrayList<>();
+    //         if (!docSanPham.isEmpty()) {
+    //             String[] itemNames = docSanPham.split(";");
+    //             for (String itemName : itemNames) {
+    //                 Item item = new Item(); // Tạo đối tượng Item từ tên sản phẩm
+    //                 sanPham.add(item);
+    //             }
+    //         }
+    //         // Create a new supplier object
+    //         // NhaCungCap nhaCungCap = new NhaCungCap(name, code, phoneNumber, address, new ArrayList<>());
+    //         NhaCungCap nhaCungCap = new NhaCungCap(name, code, phoneNumber, address, new ArrayList<>());
+    //         // Add products to the supplier
+    //         // nhaCungCap.setSanPhams(sanPham);
+
+    //         // Add the supplier to the list
+    //         addNhaCungCap(nhaCungCap);
+    //             addNhaCungCap(nhaCungCap);
+    //         }
+    //         System.out.println("Danh sách nhà cung cấp đã được đọc từ file '" + fileName + "'.");
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
+    // }
     
     //Ghi file nhà Cung cấp 
     // public void readFile(String filename){

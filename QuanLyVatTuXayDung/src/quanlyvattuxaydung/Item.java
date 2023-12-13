@@ -25,6 +25,9 @@ public class Item{
     }
     public Item(String name2, String id2, double price2, String unit2, String string, String mieuTa2, int soLuong2) {
     }
+    public Item(String name){
+        this.name = name;
+    }
     public void Input() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nhap ten san pham: ");

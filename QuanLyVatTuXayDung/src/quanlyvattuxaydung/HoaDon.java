@@ -8,13 +8,13 @@ public class HoaDon {
     private String id;
     private Date dateTime;
     NhaCungCap nhaCungCap;
-    Employee employee;
+    Customer customer;
     ListItems listSanPhams;
-    public HoaDon(String id,Date dateTime,NhaCungCap nhaCungCap,Employee employee,ListItems listSanPhams){
+    public HoaDon(String id,Date dateTime,NhaCungCap nhaCungCap,Customer customer,ListItems listSanPhams){
             this.id = id;
             this.dateTime = dateTime;
             this.nhaCungCap = nhaCungCap;
-            this.employee=employee;
+            this.customer=customer;
             this.listSanPhams = listSanPhams;
     }
     public HoaDon(){
@@ -35,6 +35,7 @@ public class HoaDon {
     public HoaDon(ListItems listSanPhams) {
         this.listSanPhams = listSanPhams;
     }
+    
     // public ArrayList<NhaCungCap> getNCC(){
     //     return nhaCungCap;
     // }
@@ -44,11 +45,11 @@ public class HoaDon {
     public void setNhaCungCap(NhaCungCap nhaCungCap) {
         this.nhaCungCap = nhaCungCap;
     }
-    public Employee getEmployee() {
-       return employee;
+    public Customer getCustomer() {
+       return customer;
     }
-        public void setEmployee(Employee employee) {
-            this.employee = employee;
+        public void setCustomer(Customer customer) {
+            this.customer = customer;
         }
     public ListItems getListSanPham() {
         return listSanPhams;
@@ -73,7 +74,7 @@ public class HoaDon {
             return soLuong;
         }
     //Phương thức nhập vào 
-    public void Input(){
+        public void Input(){
             int luaChon;
             ListNhaCungCap listNhaCungCap = new ListNhaCungCap(); //Khai báo cấp phát động của ArrayList
             ListCustomer listCustomer = new ListCustomer();
@@ -140,30 +141,54 @@ public class HoaDon {
                     System.out.println((i + 1) + ". Dung");
                     break;
                 }
-                System.out.println((i + 1) + ". " + listItems.getListItem().get(i).getName());
+                System.out.println((i + 1) + ". " + listItems.getListItem().get(i).getMieuTa());
                     
                 }
-                System.out.printf("Nhap cac su lua chon (%d de dung):\n", listItems.getListItem().size() + 2);
+                System.out.printf("Nhap cac su lua chon (%d de dung):\n", listItems.getListItem().size() + 2);       
                 do {
-                System.out.print("San pham so: ");
-                luaChon = sc.nextInt();
-                if (luaChon - 2 == listItems.getListItem().size() + 2)
-                    break;
-                else if (luaChon - 1 == listItems.getListItem().size()) {
-                    System.out.println("Thong tin san pham muon them: ");
-                    Item sanPham = new Item();
-                    sanPham.Input();
-                    listItems.addItem(sanPham);
-                    listItems.addItem(sanPham);
-                } else {
-                    Item sanPham = listItems.getListItem().get(luaChon - 1);
-                    System.out.printf("Nhap so luong san pham %s: ", sanPham.getName());
-                    int newQuantity = sc.nextInt();
-                    sanPham.setSoLuong(newQuantity);
-                    listItems.addItem(sanPham);
-                }
+                    System.out.print("San pham so: ");
+                    luaChon = sc.nextInt();
+        
+                    if (luaChon < 1 || luaChon > 20) {
+                        System.out.println("Lua chon khong hop le. Thu lai.");
+                        continue;
+                    }
+                    if (luaChon == 20) {
+                        break;
+                    }
+        
+                    if (luaChon - 1 == listItems.getListItem().size()) {
+                        System.out.println("Thong tin san pham muon them:");
+                        Item tItem = new Item();
+                        tItem.Input();
+                        listSanPhams.addItem(tItem);;
+                        listItems.addItem(tItem);
+                    } else {
+                        Item tItem = listItems.getListItem().get(luaChon );
+                        // System.out.printf("Nhap so luong san pham %s: ", tItem.getId());
+                        listSanPhams.addItem(tItem);
+                        break;
+                    }
                 } while (true);
-                System.out.println("=============================");
+                System.out.println("Nhap khach hang mua :");
+                for(int i = 0 ; i < listCustomer.getListCustomer().size();i++){
+                    if (i == listNhaCungCap.getListNhaCungCap().size()) {
+                        System.out.println((i + 1) + ". Them khach hang :");
+                        break;
+                    }
+                    System.out.println((i + 1) + ". " + listCustomer.getListCustomer().get(i).getName());
+                }
+                System.out.print("Nhap su lua chon: ");
+                luaChon = sc.nextInt();
+                    if (luaChon - 1 == listCustomer.getListCustomer().size()) { //Index of array form 0 to ... size -1 
+                        System.out.println("Nhap thong tin khach hang moi");
+                        Customer tCustomer = new Customer(); //
+                        tCustomer.Input();
+                        listCustomer.addCustomer(tCustomer);
+                        customer = tCustomer;
+                    } else {
+                        customer = listCustomer.getListCustomer().get(luaChon - 1);
+                    }
             }
             public void Output() {
                 System.out.printf("%23sThong tin hoa don\n", "");
@@ -178,9 +203,4 @@ public class HoaDon {
                     k.Output();
                 }
             }
-            
-           
 }
-
-
-

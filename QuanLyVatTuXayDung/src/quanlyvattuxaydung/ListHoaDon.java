@@ -101,11 +101,11 @@ public class ListHoaDon {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             for (HoaDon hoaDon : listHoaDon) {
                 writer.write(hoaDon.getId()+","+hoaDon.getDateTime()+","
-                +hoaDon.getNhaCungCap().getName()+","+hoaDon.getEmployee().getName()+","+hoaDon.getListSanPham());
+                +hoaDon.getNhaCungCap().getName()+","+hoaDon.getCustomer().getName()+","+hoaDon.getListSanPham().getItem(0).getName());
                 //xử lý nhà cung cấp
                 writer.newLine();
             }
-            System.out.println("Danh sách hoa don đã được ghi vào file '" + fileName +
+            System.out.println("Danh sach hoa don đa duoc ghi vào file '" + fileName +
                     "'.");
         } catch (IOException e) {
             e.printStackTrace();

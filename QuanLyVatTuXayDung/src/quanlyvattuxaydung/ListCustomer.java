@@ -1,6 +1,8 @@
 package quanlyvattuxaydung;
 import java.util.*;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -26,11 +28,23 @@ public class ListCustomer {
             // Print header
             System.out.printf("%-20s %-10s %-10s %-10s%n", "Name", "ID", "Phone","Ten san pham");
             for (Customer customer : listCustomer) {
-                System.out.printf("%-20s %-10d %-15s %-10s%n",
+                System.out.printf("%-20s %-10s %-15s",
                 customer.getName(), customer.getCode(),
-                customer.PhoneNumber, customer.getTenSanPham());
+                customer.PhoneNumber);
+                //Sản phẩm 
+                // Item sanPhams = new Item();
+                // sanPhams = customer.getSanPhams();
+                ArrayList<Item> sanPhams = customer.getSanPhams();
+                if(sanPhams !=null && !sanPhams.isEmpty())
+                    for(Item item : sanPhams){
+                        System.out.printf("%-10s",item.getName());
+                    }
+                else{
+                    System.out.println("N/A");
+                }
             }
         }
+        System.out.println();
     }
     // Thêm khách hàng
     public void addCustomer(Customer newCustomer){
@@ -52,7 +66,6 @@ public class ListCustomer {
             System.out.println("Da xoa khach hang ID: " + newCustomer.getCode());
         }
     }
-
     // Thay đổi thông tin 
     public void updateCustomerInfo(Customer cus, String thuocTinh, Object giaTri) {
         if (cus == null) {
@@ -136,10 +149,14 @@ public class ListCustomer {
                         return;
                     }
                     break;
+                    //Đang bị lỗi setSanPhams . Phỏng đoán là do mình đã thay đổi cấu trúc khai báo tham số 
+                    // Thế nhưng đối số trước đó của setSanPham là String , và mình đưa vào đối số phù hợp với việc mình sửa đổi nhưng không được 
                 case "tenSanPham":
                     // Xử lý cập nhật tenSanPham ở đây
                     if (giaTriMoi instanceof String) {
-                        customer.setTenSanPham((String) giaTriMoi);
+                        // Item suaTen = new Item();
+                        ArrayList<Item> suaTen2 = new ArrayList<>();
+                        customer.setSanPhams((suaTen2) );
                     } else {
                         System.out.println("Gia tri khong hop le cho thuoc tinh 'tenSanPham'.");
                         return;
@@ -165,13 +182,14 @@ public class ListCustomer {
         }
         return null;
     }
+
     public static void writeCustomersToFile(List<Customer> customers, String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             for (Customer customer : customers) {
                 writer.write(customer.getName() + "," +
                              customer.getPhoneNumber() + "," +
                              customer.getCode() + "," +
-                             customer.getTenSanPham());
+                             customer.getSanPhams());
                 writer.newLine();
             }
         } catch (IOException e) {
@@ -182,11 +200,36 @@ public class ListCustomer {
     public void writeToFile(String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             for (Customer customer : listCustomer) {
-                writer.write(customer.getName() + "," + customer.getCode() + "," + customer.getPhoneNumber() + "," + customer.getTenSanPham());
+                writer.write(customer.getName() + "," + customer.getCode() + "," + customer.getPhoneNumber() + "," + customer.getSanPhams());
                 writer.newLine();
             }
             System.out.println("Danh sách khách hàng đã được ghi vào file '" + fileName + "'.");
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void readToFile(String fileName){
+        try(BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while((line = reader.readLine())!=null){
+                String[] parts = line.split(",");
+                String name = parts[0];
+                String code = parts[1];
+                String PhoneNumber = parts[2];
+                String docSanPham = parts.length> 3 ? parts[3] : "";
+                ArrayList<Item> sanPham = new ArrayList<>();
+                if(!docSanPham.isEmpty()){
+                    String[] itemNames = docSanPham.split(";");
+                    for(String itemName : itemNames){
+                        Item item = new Item(itemName);
+                        sanPham.add(item);
+                    }
+                }
+                Customer customer = new Customer(name , code , PhoneNumber,sanPham);
+                addCustomer(customer);
+            }
+             System.out.println("Danh sach da duoc doc thanh cong tu file :" + fileName + "'.");
+        }catch (IOException e){
             e.printStackTrace();
         }
     }

@@ -1,4 +1,11 @@
 package quanlyvattuxaydung;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 public class NhaCungCap extends Person{
     private String code;
@@ -51,7 +58,7 @@ public class NhaCungCap extends Person{
         int soLuong = 1;
         for(int i = 0 ;i < soLuong;i++){
             Item sanPham = new Item();
-            sanPham.Input(); //nHAP VAo 
+            sanPham.Input(); //nHAP VAo
             sanPhams.add(sanPham); //thêm vào sản phẩm 
         }
         System.out.println("Đã được thêm vào");
